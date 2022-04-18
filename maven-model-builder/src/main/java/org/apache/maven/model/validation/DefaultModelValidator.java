@@ -49,14 +49,17 @@ import org.codehaus.plexus.util.StringUtils;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -81,9 +84,9 @@ public class DefaultModelValidator
 
     private static final String EMPTY = "";
 
-    private final Set<String> validCoordinateIds = new HashSet<>();
+    private final Set<String> validCoordinateIds = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
-    private final Set<String> validProfileIds = new HashSet<>();
+    private final Set<String> validProfileIds = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
     private final ModelVersionProcessor versionProcessor;
 
